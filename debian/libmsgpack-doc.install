@@ -1,0 +1,2 @@
+build/doc_c/html/* /usr/share/doc/libmsgpack-doc/msgpack-c
+build/doc_cpp/html/* /usr/share/doc/libmsgpack-doc/msgpack-cpp

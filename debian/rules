@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all,-pie
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/buildflags.mk
+
+export CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
+
+%:
+	dh $@ --parallel --builddirectory=build
+
+override_dh_auto_configure:
+	env GTEST_ROOT=/usr/src/googletest/googletest dh_auto_configure -- -DMSGPACK_CXX11=ON -DMSGPACK_ENABLE_SHARED=ON -DMSGPACK_ENABLE_CXX=ON -DCMAKE_INSTALL_LIBDIR=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_auto_build-indep:
+	dh_auto_build -- doxygen
+
+override_dh_install-indep:
+	dh_install -i
+	dh_doxygen
+
+override_dh_auto_test-indep:
+
+override_dh_install:
+	dh_install --list-missing

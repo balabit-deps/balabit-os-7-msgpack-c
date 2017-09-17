@@ -1,0 +1,49 @@
+Source: msgpack-c
+Section: libs
+Priority: optional
+Maintainer: Taku YASUI <tach@debian.org>
+Uploaders: James McCoy <jamessan@debian.org>
+Build-Depends-Indep: doxygen,
+                     doxygen-latex
+Build-Depends: cmake (>= 2.8.12),
+               debhelper (>= 9),
+               googletest,
+               zlib1g-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/msgpack/msgpack-c/
+Vcs-Git: https://anonscm.debian.org/git/collab-maint/msgpack-c.git
+Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/msgpack-c.git
+
+Package: libmsgpackc2
+Pre-Depends: ${misc:Pre-Depends}
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: binary-based efficient object serialization library
+ MessagePack is a binary-based efficient object serialization library.
+ It enables to exchange structured objects between many languages like JSON.
+ But unlike JSON, it is very fast and small.
+
+Package: libmsgpack-dev
+Section: libdevel
+Architecture: any
+Depends: libmsgpackc2 (= ${binary:Version}),
+         ${misc:Depends}
+Suggests: libmsgpack-doc
+Description: binary-based efficient object serialization library
+ MessagePack is a binary-based efficient object serialization library.
+ It enables to exchange structured objects between many languages like JSON.
+ But unlike JSON, it is very fast and small.
+ .
+ This package contains the headers files needed for developing with msgpack-c.
+
+Package: libmsgpack-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Description: binary-based efficient object serialization library (docs)
+ MessagePack is a binary-based efficient object serialization library.
+ It enables to exchange structured objects between many languages like JSON.
+ But unlike JSON, it is very fast and small.
+ .
+ This package contains the documentation of msgpack-c's API.
